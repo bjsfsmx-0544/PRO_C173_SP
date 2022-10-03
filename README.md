@@ -1,2 +1,2 @@
-# PRO-C173-AR
-After class project solution for C173
+# PRO_C173_SP
+Solución para el proyecto después de la clase C173

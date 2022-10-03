@@ -23,12 +23,12 @@ AFRAME.registerComponent("markerhandler", {
       "https://raw.githubusercontent.com/whitehatjr/ar-toy-store-assets/master/toy-shop.png";
 
     swal({
-      title: "Welcome to Toy Shop!!",
+      title: "¡Bienvenido a la tienda de juguetes!",
       icon: iconUrl,
       content: {
         element: "input",
         attributes: {
-          placeholder: "Type your uid Ex:( U01 )"
+          placeholder: "Escribe tu identificador único. Ej. (U01)"
         }
       }
     }).then(inputValue => {
@@ -42,26 +42,26 @@ AFRAME.registerComponent("markerhandler", {
       swal({
         icon: "warning",
         title: toy.toy_name.toUpperCase(),
-        text: "This toy is out of stock!!!",
+        text: "¡Ya no hay unidades de este juguete!",
         timer: 2500,
         buttons: false
       });
     } else {
-      // Changing Model scale to initial scale
+      // Cambiar la escala del modelo a la escala inicial
       var model = document.querySelector(`#model-${toy.id}`);
       model.setAttribute("position", toy.model_geometry.position);
       model.setAttribute("rotation", toy.model_geometry.rotation);
       model.setAttribute("scale", toy.model_geometry.scale);
 
-      // make model visible
+      // Hacer al modelo visible
       var model = document.querySelector(`#model-${toy.id}`);
       model.setAttribute("visible", true);
 
-      // make description Container visible
+      // Hacer al contenedor de descripción visible
       var mainPlane = document.querySelector(`#main-plane-${toy.id}`);
       mainPlane.setAttribute("visible", true);
 
-      // Changing button div visibility
+      // Cambiar la visibilidad de buttonDiv
       var buttonDiv = document.getElementById("button-div");
       buttonDiv.style.display = "flex";
 
@@ -69,14 +69,14 @@ AFRAME.registerComponent("markerhandler", {
       var orderSummaryButtton = document.getElementById("order-summary-button");
       var payButton = document.getElementById("pay-button");
       var ratingButton = document.getElementById("rating-button");
-      // Handling Click Events
+      // Administrar los eventos de clic
       orderButtton.addEventListener("click", () => {
         uid = uid.toUpperCase();
         this.handleOrder(uid, toy);
 
         swal({
           icon: "https://i.imgur.com/4NZ6uLY.jpg",
-          title: "Thanks For Order !",
+          title: "¡Gracias por ordenar!",
           text: "  ",
           timer: 2000,
           buttons: false
@@ -93,7 +93,7 @@ AFRAME.registerComponent("markerhandler", {
     }
   },
   handleOrder: function(uid, toy) {
-    // Reading current UID order details
+    // Leer los detalles del pedido del identificador único actual
     firebase
       .firestore()
       .collection("users")
@@ -103,10 +103,10 @@ AFRAME.registerComponent("markerhandler", {
         var details = doc.data();
 
         if (details["current_orders"][toy.id]) {
-          // Increasing Current Quantity
+          // Aumentar la cantidad actual
           details["current_orders"][toy.id]["quantity"] += 1;
 
-          //Calculating Subtotal of item
+          // Calcular el subtotal de los elementos
           var currentQuantity = details["current_orders"][toy.id]["quantity"];
 
           details["current_orders"][toy.id]["subtotal"] =
@@ -122,7 +122,7 @@ AFRAME.registerComponent("markerhandler", {
 
         details.total_bill += toy.price;
 
-        // Updating Db
+        // Actualizar la base de datos
         firebase
           .firestore()
           .collection("users")
@@ -148,17 +148,17 @@ AFRAME.registerComponent("markerhandler", {
       .then(doc => doc.data());
   },
   handleOrderSummary: async function() {
-    // Changing modal div visibility
+    // Cambiar la visibilidad de modalDiv
     var modalDiv = document.getElementById("modal-div");
     modalDiv.style.display = "flex";
-    // Getting UID
+    // Obtener el identificador único
     uid = uid.toUpperCase();
 
-    // Getting Order summary from database
+    // Obtener el resumen del pedido desde la base de datos
     var orderSummary = await this.getorderSummary(uid);
 
     var tableBodyTag = document.getElementById("bill-table-body");
-    // Removing old tr data
+    // Remover los datos antiguos de "tr"
     tableBodyTag.innerHTML = "";
 
     var currentOrders = Object.keys(orderSummary.current_orders);
@@ -213,13 +213,13 @@ AFRAME.registerComponent("markerhandler", {
     tableBodyTag.appendChild(totalTr);
   },
   handlePayment: function() {
-    // Close Modal
+    // Cerrar el modal
     document.getElementById("modal-div").style.display = "none";
 
-    // Getting UID
+    // Obtener el identificador único
     uid = uid.toUpperCase();
 
-    // Reseting current orders and total bill
+    // Reestablecer los pedidos actuales y la cuenta total
     firebase
       .firestore()
       .collection("users")
@@ -231,15 +231,15 @@ AFRAME.registerComponent("markerhandler", {
       .then(() => {
         swal({
           icon: "success",
-          title: "Thanks For Paying !",
-          text: "We Hope You Like Your Toy !!",
+          title: "¡Gracias por su pago!",
+          text: "¡Esperamos que disfrutes el juguete!",
           timer: 2500,
           buttons: false
         });
       });
   },
   handleRatings: function(toy) {
-    // Close Modal
+    // Cerrar el modal
     document.getElementById("rating-modal-div").style.display = "flex";
     document.getElementById("rating-input").value = "0";
 
@@ -258,8 +258,8 @@ AFRAME.registerComponent("markerhandler", {
         .then(() => {
           swal({
             icon: "success",
-            title: "Thanks For Rating!",
-            text: "We Hope You Like Toy !!",
+            title: "¡Gracias por su calificación!",
+            text: "¿Esperamos que disfrutes el juguete!",
             timer: 2500,
             buttons: false
           });
@@ -267,7 +267,7 @@ AFRAME.registerComponent("markerhandler", {
     });
   },
   handleMarkerLost: function() {
-    // Changing button div visibility
+    // Cambiar la visibilidad de buttonDiv
     var buttonDiv = document.getElementById("button-div");
     buttonDiv.style.display = "none";
   }

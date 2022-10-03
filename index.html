@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ar Toy Shop</title>
+    <title>Tienda de juguetes AR</title>
     <meta
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
@@ -32,7 +32,7 @@
     <!-- sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- El núcleo del SDK de Firebase JS siempre es necesario y se enlista primero -->
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
     <script>
@@ -45,14 +45,14 @@
         appId: "1:730692904949:web:0f72a095af54503028a2bc",
         measurementId: "G-WB8D6DY4VW"
       };
-      // Initialize Firebase
+      // Inicializar Firebase
       firebase.initializeApp(firebaseConfig);
     </script>
 
-    <!-- Local StyleSheet -->
+    <!-- Hoja de estilos local -->
     <link href="./style.css" rel="stylesheet" />
 
-    <!--JS Files-->
+    <!-- Archivos JS -->
     <script src="./js/addButtons.js"></script>
     <script src="./js/addMarkers.js"></script>
     <script src="./js/markerhandler.js"></script>
@@ -72,19 +72,19 @@
       createbuttons
       createmarkers
     >
-      <!-- Camera -->
+      <!-- Cámara -->
       <a-entity camera></a-entity>
     </a-scene>
-    <!-- Button Main Div -->
+    <!-- División del botón principal -->
     <div id="button-div"></div>
 
-    <!-- Order Summary Boilerplate -->
+    <!-- Plantilla del resumen del pedido -->
     <div class="container">
       <div id="modal-div" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Order Summary</h5>
+              <h5 class="modal-title">Resumen del pedido</h5>
               <button
                 type="button"
                 class="close"
@@ -100,24 +100,23 @@
                 <table class="table table-condensed">
                   <thead>
                     <tr>
-                      <td><strong>Item</strong></td>
-                      <td class="text-center"><strong>Price</strong></td>
-                      <td class="text-center"><strong>Quantity</strong></td>
+                      <td><strong>Elemento</strong></td>
+                      <td class="text-center"><strong>Precio</strong></td>
+                      <td class="text-center"><strong>Cantidad</strong></td>
                       <td class="text-right"><strong>Total</strong></td>
                     </tr>
                   </thead>
                   <tbody id="bill-table-body">
                     <!-- foreach ($order->lineItems as $line)  -->
 
-                    <!-- Your Order Summary UI will comes here
-
-                 --></tbody>
+                    <!-- Tu resumen de pedido vendrá aquí --> 
+                  </tbody>
                 </table>
               </div>
             </div>
             <div class="modal-footer">
               <button id="pay-button" type="button" class="btn btn-primary">
-                Pay Now
+                Pagar ahora
               </button>
             </div>
           </div>
@@ -125,7 +124,7 @@
       </div>
     </div>
 
-    <!-- Boilerplate for Ratings Model -->
+    <!-- Plantilla para calificar al modelo -->
 
     <div class="container">
       <div
@@ -137,7 +136,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Rate Toy</h5>
+              <h5 class="modal-title">Calificar juguete</h5>
               <button
                 type="button"
                 class="close"
@@ -167,7 +166,7 @@
                 type="button"
                 class="btn btn-primary"
               >
-                Submit
+                Enviar
               </button>
             </div>
           </div>
