@@ -231,7 +231,7 @@ AFRAME.registerComponent("markerhandler", {
       .then(() => {
         swal({
           icon: "success",
-          title: "¡Gracias por su pago!",
+          title: "¡Gracias por tu pago!",
           text: "¡Esperamos que disfrutes el juguete!",
           timer: 2500,
           buttons: false
@@ -258,8 +258,8 @@ AFRAME.registerComponent("markerhandler", {
         .then(() => {
           swal({
             icon: "success",
-            title: "¡Gracias por su calificación!",
-            text: "¿Esperamos que disfrutes el juguete!",
+            title: "¡Gracias por tu calificación!",
+            text: "¡Esperamos que disfrutes el juguete!",
             timer: 2500,
             buttons: false
           });
